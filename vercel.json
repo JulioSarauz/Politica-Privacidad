@@ -1,7 +1,7 @@
 {
-    "rewrites": [
-      { "source": "/about", "destination": "/about.html" },
-      { "source": "/(.*)", "destination": "/index.html" }
-    ]
-  }
-  
+  "rewrites": [
+    { "source": "/app-ads.txt", "destination": "/app-ads.txt" },
+    { "source": "/about", "destination": "/about.html" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
