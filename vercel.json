@@ -1,5 +1,6 @@
 {
     "rewrites": [
+      { "source": "/cv", "destination": "/cv/index.html" },
       { "source": "/about", "destination": "/about.html" },
       { "source": "/(.*)", "destination": "/index.html" }
     ]
