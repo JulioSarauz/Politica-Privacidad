@@ -8,13 +8,434 @@
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link rel="stylesheet" href="styles.css">
+
   <!-- Librerías para generación de PDF -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
   <!-- CSS Inlined (Modificado para menos margen lateral) -->
+  <style>
+    :root {
+      --color-principal-dark: #0f1532;
+      --color-acento-claro: #3498db;
+      --color-info-box-bg: #2c3e50;
+      --color-texto-en-info-box: #ffffff;
+      --color-fondo-cv: #f8f8f8;
+      --color-separador: #4a667f;
+      --photo-size: 150px;
+      --photo-border: 6px;
+      --overlap-amount: 25px;
+    }
 
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', 'Verdana', sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    /* Estilo para el botón de descarga */
+    .pdf-button-container {
+      text-align: center;
+      margin: 20px auto;
+      width: 210mm;
+      /* Alinear con el CV */
+    }
+
+    #btnPDF {
+      background-color: var(--color-acento-claro);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 8px;
+      font-size: 1.1em;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.1s;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    #btnPDF:hover {
+      background-color: #2980b9;
+      transform: translateY(-1px);
+    }
+
+    .cv-container {
+      width: 210mm;
+      margin: 20px auto;
+      background-color: var(--color-fondo-cv);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      position: relative;
+    }
+
+    /* ************************************** */
+    /* A4-PAGE: REDUCCIÓN DE MÁRGENES LATERALES MÁXIMA */
+    .a4-page {
+      width: 210mm;
+      min-height: 297mm;
+      padding: 15mm 8mm;
+      /* Márgenes laterales reducidos a 8mm */
+      box-sizing: border-box;
+      background: white;
+      page-break-after: always;
+    }
+
+    /* ************************************** */
+
+    .header-main {
+      position: relative;
+      height: var(--photo-size);
+      margin-bottom: 50px;
+      display: flex;
+      align-items: center;
+    }
+
+    .header-info-box {
+      background-color: var(--color-info-box-bg);
+      color: var(--color-texto-en-info-box);
+      padding: 20px 25px;
+      /* Ajustado el padding para el nuevo ancho */
+      margin-right: calc(var(--photo-size) - var(--overlap-amount));
+      border-radius: 0 150px 150px 0;
+      box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.3);
+      border-left: 8px solid var(--color-acento-claro);
+      position: relative;
+      z-index: 5;
+      height: var(--photo-size);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .header-info-box h1 {
+      font-size: 2.2em;
+      margin: 0 0 5px 0;
+      text-transform: uppercase;
+    }
+
+    .header-info-box p {
+      font-size: 1.1em;
+      color: var(--color-acento-claro);
+      margin: 0 0 10px 0;
+      font-weight: bold;
+    }
+
+    .contact-info {
+      display: flex;
+      gap: 15px;
+    }
+
+    .contact-info div {
+      font-size: 0.9em;
+      color: #ccc;
+    }
+
+    .contact-info a {
+      color: var(--color-acento-claro);
+      text-decoration: none;
+    }
+
+    .header-photo-container {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      width: calc(var(--photo-size) + 30px);
+      height: calc(var(--photo-size) + 30px);
+      background-color: white;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .header-photo-container img {
+      width: var(--photo-size);
+      height: var(--photo-size);
+      border-radius: 50%;
+      object-fit: cover;
+      border: var(--photo-border) solid white;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Contenedor de grilla (usado dos veces ahora) */
+    .content-grid {
+      display: grid;
+      grid-template-columns: 35% 65%;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      /* Se añade separación vertical para cumplir con la solicitud */
+      margin-bottom: 30px;
+    }
+
+    /* El último content-grid no lleva margen inferior */
+    .cv-main-content .content-grid:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ************************************************************ */
+    /* PRIMERA SECCIÓN: Ajustes de altura y tamaño de letra/interlineado */
+    .cv-main-content .content-grid:first-child .left-column {
+      background-color: var(--color-info-box-bg);
+      color: var(--color-texto-en-info-box);
+      padding: 30px 15px;
+      /* Aumentado el padding vertical */
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      /* Aumentado el gap entre elementos */
+    }
+
+    .cv-main-content .content-grid:first-child .left-column h2 {
+      font-size: 1.05em;
+      /* Aumentado el tamaño de la letra */
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--color-acento-claro);
+      padding-bottom: 5px;
+      margin: 0 0 8px 0;
+      color: var(--color-acento-claro);
+    }
+
+    .cv-main-content .content-grid:first-child .left-column p {
+      margin: 3px 0;
+      font-size: 0.9em;
+      /* Aumentado el tamaño de la letra */
+    }
+
+    .cv-main-content .content-grid:first-child .left-column a {
+      color: var(--color-acento-claro);
+      text-decoration: none;
+    }
+
+    .cv-main-content .content-grid:first-child .right-column {
+      background-color: #ffffff;
+      padding: 30px 25px;
+      /* Aumentado el padding vertical */
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      /* Aumentado el gap entre elementos */
+    }
+
+    .cv-main-content .content-grid:first-child .right-column .section h3 {
+      font-size: 1.25em;
+      /* Aumentado ligeramente */
+    }
+
+    .cv-main-content .content-grid:first-child .right-column .section p {
+      line-height: 1.6em;
+      /* Aumentado el interlineado */
+      font-size: 0.9em;
+      /* Asegura consistencia */
+    }
+
+    .cv-main-content .content-grid:first-child .edu-content h4 {
+      font-size: 1em;
+      /* Aumentado el tamaño de la letra */
+    }
+
+    /* ************************************************************ */
+
+
+    /* Estilos para la segunda sección (mantienen valores anteriores o los ajustan si es necesario) */
+    .cv-main-content .content-grid:last-child .left-column {
+      background-color: var(--color-info-box-bg);
+      color: var(--color-texto-en-info-box);
+      padding: 25px 15px;
+      /* Mantener o ajustar si se desea un cambio aquí */
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      /* Mantener o ajustar si se desea un cambio aquí */
+    }
+
+    .cv-main-content .content-grid:last-child .left-column h2 {
+      font-size: 1em;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--color-acento-claro);
+      padding-bottom: 5px;
+      margin: 0 0 8px 0;
+      color: var(--color-acento-claro);
+    }
+
+    .cv-main-content .content-grid:last-child .left-column p {
+      font-size: 0.85em;
+    }
+
+
+    .cv-main-content .content-grid:last-child .right-column {
+      background-color: #ffffff;
+      padding: 25px 25px;
+      /* Mantener o ajustar si se desea un cambio aquí */
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      /* Mantener o ajustar si se desea un cambio aquí */
+    }
+
+    .cv-main-content .content-grid:last-child .right-column .section h3 {
+      font-size: 1.2em;
+      /* Mantener o ajustar */
+    }
+
+    .cv-main-content .content-grid:last-child .right-column .section p {
+      line-height: 1.5em;
+      /* Mantener o ajustar */
+      font-size: 0.9em;
+    }
+
+    .cv-main-content .content-grid:last-child .exp-content p {
+      line-height: 1.5em;
+      /* Aumentado el interlineado para las descripciones */
+    }
+
+    .cv-main-content .content-grid:last-child .edu-content h4,
+    .cv-main-content .content-grid:last-child .exp-content h4 {
+      font-size: 1em;
+      /* Aumentado el tamaño de la letra */
+    }
+
+
+    .section {
+      page-break-inside: avoid;
+    }
+
+    .section h3 {
+      color: var(--color-principal-dark);
+      font-size: 1.2em;
+      /* Default para h3 */
+      margin-bottom: 8px;
+      border-bottom: 2px solid var(--color-separador);
+      display: inline-block;
+      padding-bottom: 4px;
+      text-transform: uppercase;
+    }
+
+    .section p {
+      margin: 0 0 10px 0;
+      font-size: 0.9em;
+      /* Default para p de sección */
+      line-height: 1.5em;
+      /* Default para p de sección */
+      text-align: justify;
+    }
+
+    .edu-list,
+    .exp-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .edu-item,
+    .exp-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 18px;
+      position: relative;
+      page-break-inside: avoid;
+    }
+
+    .edu-item i,
+    .exp-item i {
+      font-size: 1.3em;
+      color: #fff;
+      background-color: var(--color-acento-claro);
+      padding: 10px;
+      border-radius: 50%;
+      margin-right: 12px;
+      margin-top: 3px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+      flex-shrink: 0;
+    }
+
+    .edu-item::before,
+    .exp-item::before {
+      content: '';
+      position: absolute;
+      left: 19px;
+      top: 0;
+      bottom: -4px;
+      width: 2px;
+      background: var(--color-acento-claro);
+      z-index: -1;
+    }
+
+    .edu-content,
+    .exp-content {
+      flex: 1;
+    }
+
+    .edu-content h4,
+    .exp-content h4 {
+      margin: 0 0 3px 0;
+      color: var(--color-principal-dark);
+      font-size: 1em;
+      /* Default para h4 */
+    }
+
+    .edu-content span,
+    .exp-content span {
+      font-size: 0.85em;
+      color: #777;
+    }
+
+
+    .exp-content p {
+      margin: 5px 0 0 0;
+      font-size: 0.85em;
+      color: #555;
+      line-height: 1.5em;
+      /* Default para descripciones de experiencia */
+    }
+
+    /* Para impresión PDF */
+    @media print {
+      body {
+        margin: 0;
+        background: white;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .cv-container {
+        box-shadow: none;
+        margin: 0;
+      }
+
+      .a4-page {
+        box-shadow: none;
+        margin: 0;
+        padding: 15mm 8mm;
+        /* Asegura un margen uniforme de 8mm en impresión */
+        page-break-after: always;
+      }
+
+      .a4-page:last-child {
+        page-break-after: auto;
+      }
+
+      /* Reduce el margen de separación en impresión para ahorrar espacio */
+      .content-grid {
+        margin-bottom: 15px;
+      }
+
+      /* OCULTAR EL BOTÓN EN LA IMPRESIÓN */
+      #btnPDF,
+      .pdf-button-container {
+        display: none !important;
+      }
+    }
+
+    @page {
+      size: A4;
+      margin: 0;
+    }
+  </style>
 
 </head>
 
@@ -39,14 +460,13 @@
             <div><i class="fas fa-phone"></i> +593 961824593</div>
             <div>
               <i class="fab fa-linkedin"></i>
-              <a href="https://www.linkedin.com/in/julio-c%C3%A9sar-sar%C3%A1uz-rivadeneira-044716210/"
-                target="_blank">linkedin.com/JulioSarauz</a>
+              <a href="https://www.linkedin.com/in/julio-c%C3%A9sar-sar%C3%A1uz-rivadeneira-044716210/" target="_blank">linkedin.com/JulioSarauz</a>
             </div>
           </div>
         </div>
         <div class="header-photo-container">
-          <img src="https://github.com/JulioSarauz/Politica-Privacidad/blob/master/cv/fotojc.jpg?raw=true"
-            alt="Foto de perfil" onerror="this.src='https://placehold.co/150x150/2c3e50/ffffff?text=JC+Sarauz'" />
+          <img src="https://github.com/JulioSarauz/Politica-Privacidad/blob/master/cv/fotojc.jpg?raw=true" alt="Foto de perfil"
+            onerror="this.src='https://placehold.co/150x150/2c3e50/ffffff?text=JC+Sarauz'" />
         </div>
       </header>
 
@@ -601,8 +1021,7 @@
                     </h4>
                     <span>2024</span>
                     <p style="line-height: 1.3;">
-                      Lideré el desarrollo de la app móvil y web transaccional, logrando mejor <strong>seguridad,
-                        escalabilidad y accesibilidad</strong>. Implementación bajo la Ley de Protección de Datos.
+                      Lideré el desarrollo de la app móvil y web transaccional, logrando mejor <strong>seguridad, escalabilidad y accesibilidad</strong>. Implementación bajo la Ley de Protección de Datos.
                     </p>
                   </div>
                 </li>
@@ -616,8 +1035,7 @@
                     </h4>
                     <span>2023</span>
                     <p style="line-height: 1.3;">
-                      Integración del <strong>bus de servicios</strong> con la plataforma Facilito para crear una red de
-                      pagos que <strong>amplió la cobertura</strong> y optimizó procesos transaccionales.
+                      Integración del <strong>bus de servicios</strong> con la plataforma Facilito para crear una red de pagos que <strong>amplió la cobertura</strong> y optimizó procesos transaccionales.
                     </p>
                   </div>
                 </li>
@@ -628,8 +1046,7 @@
                     <h4>Ruleta29 <span>| Cooperativa 29 de Octubre</span></h4>
                     <span>2023</span>
                     <p style="line-height: 1.3;">
-                      Desarrollo de app para <strong>automatizar sorteos</strong> con selección aleatoria y generación
-                      de reportes, garantizando <strong>transparencia y eficiencia</strong>.
+                      Desarrollo de app para <strong>automatizar sorteos</strong> con selección aleatoria y generación de reportes, garantizando <strong>transparencia y eficiencia</strong>.
                     </p>
                   </div>
                 </li>
@@ -643,8 +1060,7 @@
                     </h4>
                     <span>2023</span>
                     <p style="line-height: 1.3;">
-                      Diseño y migración del bus de servicios a <strong>Azure</strong> con arquitectura modular y
-                      autoescalable, <strong>reduciendo costos</strong> y mejorando la disponibilidad.
+                      Diseño y migración del bus de servicios a <strong>Azure</strong> con arquitectura modular y autoescalable, <strong>reduciendo costos</strong> y mejorando la disponibilidad.
                     </p>
                   </div>
                 </li>
@@ -658,8 +1074,7 @@
                     </h4>
                     <span>2022</span>
                     <p style="line-height: 1.3;">
-                      Creación de portal para registro y control de pagos legales, mejorando la <strong>eficiencia y
-                        transparencia</strong> en la gestión jurídica interna.
+                      Creación de portal para registro y control de pagos legales, mejorando la <strong>eficiencia y transparencia</strong> en la gestión jurídica interna.
                     </p>
                   </div>
                 </li>
@@ -670,8 +1085,7 @@
                     <h4>La Weka <span>| Personal</span></h4>
                     <span>2021</span>
                     <p style="line-height: 1.3;">
-                      App cliente-servidor Android para conectar comensales con locales de comida mediante
-                      recomendaciones y promociones.
+                      App cliente-servidor Android para conectar comensales con locales de comida mediante recomendaciones y promociones.
                     </p>
                   </div>
                 </li>
@@ -682,8 +1096,7 @@
                     <h4>QR Creador <span>| Personal</span></h4>
                     <span>2025</span>
                     <p style="line-height: 1.3;">
-                      Aplicación móvil híbrida (QR generar/escanear), publicada en Google Play e integrada con
-                      <strong>AdMob para monetización</strong>.
+                      Aplicación móvil híbrida (QR generar/escanear), publicada en Google Play e integrada con <strong>AdMob para monetización</strong>.
                     </p>
                   </div>
                 </li>
@@ -695,7 +1108,7 @@
 
     </div>
   </div>
-  <script>
+ <script>
     /**
      * Función para descargar el CV como PDF usando html2canvas y jsPDF.
      * La lógica ha sido ajustada para manejar posibles múltiples páginas A4.
@@ -724,42 +1137,42 @@
       }).then(canvas => {
         // *** POSIBLE PUNTO DE FALLO: Si canvas está 'tainted', toDataURL fallará aquí. ***
         try {
-          const imgData = canvas.toDataURL('image/png');
-          const pdf = new jsPDF('p', 'mm', 'a4');
-          const imgWidth = 210; // A4 width in mm
-          const pageHeight = 297; // A4 height in mm
-          const imgHeight = (canvas.height * imgWidth) / canvas.width;
-          let heightLeft = imgHeight;
-          let position = 0;
+            const imgData = canvas.toDataURL('image/png');
+            const pdf = new jsPDF('p', 'mm', 'a4');
+            const imgWidth = 210; // A4 width in mm
+            const pageHeight = 297; // A4 height in mm
+            const imgHeight = (canvas.height * imgWidth) / canvas.width;
+            let heightLeft = imgHeight;
+            let position = 0;
 
-          // Añadir la primera página
-          pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-          heightLeft -= pageHeight;
-
-          // Bucle para añadir páginas adicionales si el contenido es demasiado largo
-          while (heightLeft >= -1) {
-            position = heightLeft - imgHeight;
-            pdf.addPage();
+            // Añadir la primera página
             pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
             heightLeft -= pageHeight;
-          }
 
-          pdf.save(filename);
+            // Bucle para añadir páginas adicionales si el contenido es demasiado largo
+            while (heightLeft >= -1) { 
+              position = heightLeft - imgHeight;
+              pdf.addPage();
+              pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+              heightLeft -= pageHeight;
+            }
+
+            pdf.save(filename);
 
         } catch (dataURLError) {
-          // Manejar el error de toDataURL específicamente
-          throw new Error("Error de Seguridad/CORS: El canvas contiene recursos externos ('tainted') y no se puede exportar a imagen. Verifique los enlaces de iconos/imágenes.");
+            // Manejar el error de toDataURL específicamente
+            throw new Error("Error de Seguridad/CORS: El canvas contiene recursos externos ('tainted') y no se puede exportar a imagen. Verifique los enlaces de iconos/imágenes.");
         }
 
       }).catch(error => {
         console.error("Error generating PDF:", error);
-
+        
         // Mostrar mensaje de error al usuario
         let userMessage = 'Error al generar PDF. Causa: Problema de seguridad (CORS) con recursos externos (imágenes/iconos).';
         if (error.message.includes('SecurityError') || error.message.includes('CORS')) {
-          userMessage = 'Error de seguridad (CORS). Verifique que sus iconos y/o imágenes se carguen de la misma fuente.';
+             userMessage = 'Error de seguridad (CORS). Verifique que sus iconos y/o imágenes se carguen de la misma fuente.';
         }
-
+        
         btn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> ' + userMessage;
       }).finally(() => {
         // Restaurar el botón
@@ -769,7 +1182,7 @@
         }, 5000); // 5 segundos para que el usuario lea el error.
       });
     }
-  </script>
+</script>
 </body>
 
 </html>
