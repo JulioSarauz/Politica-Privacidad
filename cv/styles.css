@@ -10,7 +10,8 @@
   --overlap-amount: 25px;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   font-family: 'Arial', 'Verdana', sans-serif;
@@ -22,7 +23,8 @@ html, body {
 .pdf-button-container {
   text-align: center;
   margin: 20px auto;
-  width: 210mm; /* Alinear con el CV */
+  width: 210mm;
+  /* Alinear con el CV */
 }
 
 #btnPDF {
@@ -46,18 +48,23 @@ html, body {
   width: 210mm;
   margin: 20px auto;
   background-color: var(--color-fondo-cv);
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   position: relative;
 }
 
+/* ************************************** */
+/* A4-PAGE: REDUCCIÓN DE MÁRGENES LATERALES MÁXIMA */
 .a4-page {
   width: 210mm;
   min-height: 297mm;
-  padding: 15mm 20mm;
+  padding: 15mm 8mm;
+  /* Márgenes laterales reducidos a 8mm */
   box-sizing: border-box;
   background: white;
   page-break-after: always;
 }
+
+/* ************************************** */
 
 .header-main {
   position: relative;
@@ -70,10 +77,11 @@ html, body {
 .header-info-box {
   background-color: var(--color-info-box-bg);
   color: var(--color-texto-en-info-box);
-  padding: 20px 30px;
+  padding: 20px 25px;
+  /* Ajustado el padding para el nuevo ancho */
   margin-right: calc(var(--photo-size) - var(--overlap-amount));
   border-radius: 0 150px 150px 0;
-  box-shadow: 3px 3px 12px rgba(0,0,0,0.3);
+  box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.3);
   border-left: 8px solid var(--color-acento-claro);
   position: relative;
   z-index: 5;
@@ -124,7 +132,7 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
 .header-photo-container img {
@@ -133,27 +141,102 @@ html, body {
   border-radius: 50%;
   object-fit: cover;
   border: var(--photo-border) solid white;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
 
+/* Contenedor de grilla (usado dos veces ahora) */
 .content-grid {
   display: grid;
   grid-template-columns: 35% 65%;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  /* Se añade separación vertical para cumplir con la solicitud */
+  margin-bottom: 30px;
 }
 
-.left-column {
+/* El último content-grid no lleva margen inferior */
+.cv-main-content .content-grid:last-child {
+  margin-bottom: 0;
+}
+
+/* ************************************************************ */
+/* PRIMERA SECCIÓN: Ajustes de altura y tamaño de letra/interlineado */
+.cv-main-content .content-grid:first-child .left-column {
   background-color: var(--color-info-box-bg);
   color: var(--color-texto-en-info-box);
-  padding: 25px 20px;
+  padding: 30px 15px;
+  /* Aumentado el padding vertical */
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  /* Aumentado el gap entre elementos */
+}
+
+.cv-main-content .content-grid:first-child .left-column h2 {
+  font-size: 1.05em;
+  /* Aumentado el tamaño de la letra */
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--color-acento-claro);
+  padding-bottom: 5px;
+  margin: 0 0 8px 0;
+  color: var(--color-acento-claro);
+}
+
+.cv-main-content .content-grid:first-child .left-column p {
+  margin: 3px 0;
+  font-size: 0.9em;
+  /* Aumentado el tamaño de la letra */
+}
+
+.cv-main-content .content-grid:first-child .left-column a {
+  color: var(--color-acento-claro);
+  text-decoration: none;
+}
+
+.cv-main-content .content-grid:first-child .right-column {
+  background-color: #ffffff;
+  padding: 30px 25px;
+  /* Aumentado el padding vertical */
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  /* Aumentado el gap entre elementos */
+}
+
+.cv-main-content .content-grid:first-child .right-column .section h3 {
+  font-size: 1.25em;
+  /* Aumentado ligeramente */
+}
+
+.cv-main-content .content-grid:first-child .right-column .section p {
+  line-height: 1.6em;
+  /* Aumentado el interlineado */
+  font-size: 0.9em;
+  /* Asegura consistencia */
+}
+
+.cv-main-content .content-grid:first-child .edu-content h4 {
+  font-size: 1em;
+  /* Aumentado el tamaño de la letra */
+}
+
+/* ************************************************************ */
+
+
+/* Estilos para la segunda sección (mantienen valores anteriores o los ajustan si es necesario) */
+.cv-main-content .content-grid:last-child .left-column {
+  background-color: var(--color-info-box-bg);
+  color: var(--color-texto-en-info-box);
+  padding: 25px 15px;
+  /* Mantener o ajustar si se desea un cambio aquí */
   display: flex;
   flex-direction: column;
   gap: 25px;
+  /* Mantener o ajustar si se desea un cambio aquí */
 }
 
-.left-column h2 {
+.cv-main-content .content-grid:last-child .left-column h2 {
   font-size: 1em;
   text-transform: uppercase;
   border-bottom: 1px solid var(--color-acento-claro);
@@ -162,23 +245,43 @@ html, body {
   color: var(--color-acento-claro);
 }
 
-.left-column p {
-  margin: 3px 0;
+.cv-main-content .content-grid:last-child .left-column p {
   font-size: 0.85em;
 }
 
-.left-column a {
-  color: var(--color-acento-claro);
-  text-decoration: none;
-}
 
-.right-column {
+.cv-main-content .content-grid:last-child .right-column {
   background-color: #ffffff;
-  padding: 25px 30px;
+  padding: 25px 25px;
+  /* Mantener o ajustar si se desea un cambio aquí */
   display: flex;
   flex-direction: column;
   gap: 25px;
+  /* Mantener o ajustar si se desea un cambio aquí */
 }
+
+.cv-main-content .content-grid:last-child .right-column .section h3 {
+  font-size: 1.2em;
+  /* Mantener o ajustar */
+}
+
+.cv-main-content .content-grid:last-child .right-column .section p {
+  line-height: 1.5em;
+  /* Mantener o ajustar */
+  font-size: 0.9em;
+}
+
+.cv-main-content .content-grid:last-child .exp-content p {
+  line-height: 1.5em;
+  /* Aumentado el interlineado para las descripciones */
+}
+
+.cv-main-content .content-grid:last-child .edu-content h4,
+.cv-main-content .content-grid:last-child .exp-content h4 {
+  font-size: 1em;
+  /* Aumentado el tamaño de la letra */
+}
+
 
 .section {
   page-break-inside: avoid;
@@ -187,6 +290,7 @@ html, body {
 .section h3 {
   color: var(--color-principal-dark);
   font-size: 1.2em;
+  /* Default para h3 */
   margin-bottom: 8px;
   border-bottom: 2px solid var(--color-separador);
   display: inline-block;
@@ -197,17 +301,21 @@ html, body {
 .section p {
   margin: 0 0 10px 0;
   font-size: 0.9em;
+  /* Default para p de sección */
   line-height: 1.5em;
+  /* Default para p de sección */
   text-align: justify;
 }
 
-.edu-list, .exp-list { 
-  list-style: none; 
-  padding: 0; 
-  margin: 0; 
+.edu-list,
+.exp-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.edu-item, .exp-item {
+.edu-item,
+.exp-item {
   display: flex;
   align-items: flex-start;
   margin-bottom: 18px;
@@ -215,7 +323,8 @@ html, body {
   page-break-inside: avoid;
 }
 
-.edu-item i, .exp-item i {
+.edu-item i,
+.exp-item i {
   font-size: 1.3em;
   color: #fff;
   background-color: var(--color-acento-claro);
@@ -223,11 +332,12 @@ html, body {
   border-radius: 50%;
   margin-right: 12px;
   margin-top: 3px;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
   flex-shrink: 0;
 }
 
-.edu-item::before, .exp-item::before {
+.edu-item::before,
+.exp-item::before {
   content: '';
   position: absolute;
   left: 19px;
@@ -238,17 +348,21 @@ html, body {
   z-index: -1;
 }
 
-.edu-content, .exp-content {
+.edu-content,
+.exp-content {
   flex: 1;
 }
 
-.edu-content h4, .exp-content h4 {
+.edu-content h4,
+.exp-content h4 {
   margin: 0 0 3px 0;
   color: var(--color-principal-dark);
-  font-size: 0.95em;
+  font-size: 1em;
+  /* Default para h4 */
 }
 
-.edu-content span, .exp-content span {
+.edu-content span,
+.exp-content span {
   font-size: 0.85em;
   color: #777;
 }
@@ -258,7 +372,8 @@ html, body {
   margin: 5px 0 0 0;
   font-size: 0.85em;
   color: #555;
-  line-height: 1.4em;
+  line-height: 1.5em;
+  /* Default para descripciones de experiencia */
 }
 
 /* Para impresión PDF */
@@ -269,24 +384,32 @@ html, body {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
-  
+
   .cv-container {
     box-shadow: none;
     margin: 0;
   }
-  
+
   .a4-page {
     box-shadow: none;
     margin: 0;
+    padding: 15mm 8mm;
+    /* Asegura un margen uniforme de 8mm en impresión */
     page-break-after: always;
   }
-  
+
   .a4-page:last-child {
     page-break-after: auto;
   }
-  
+
+  /* Reduce el margen de separación en impresión para ahorrar espacio */
+  .content-grid {
+    margin-bottom: 15px;
+  }
+
   /* OCULTAR EL BOTÓN EN LA IMPRESIÓN */
-  #btnPDF, .pdf-button-container {
+  #btnPDF,
+  .pdf-button-container {
     display: none !important;
   }
 }
