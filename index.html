@@ -1,135 +1,238 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Política de Privacidad | NeiruzLab</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Política de Privacidad | NeiruzLab</title>
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <style>
-        :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
-            --bg-color: #ffffff;
-            --text-color: #333;
-            --light-gray: #f4f4f4;
-            --border-radius: 8px;
-        }
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --secondary-color: #3498db;
+      --accent-color: #e67e22;
+      --bg-color: #ffffff;
+      --light-gray: #f4f4f4;
+      --text-color: #333333;
+      --border-radius: 12px;
+      --transition-fast: 0.2s ease-out;
+      --transition-medium: 0.4s ease-out;
+    }
 
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: var(--light-gray);
-            margin: 0;
-            padding: 20px;
-            line-height: 1.6;
-            color: var(--text-color);
-        }
+    html {
+      scroll-behavior: smooth;
+    }
 
-        .container {
-            background-color: var(--bg-color);
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 30px 40px;
-            border-radius: var(--border-radius);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
+    body {
+      font-family: 'Poppins', Arial, sans-serif;
+      background-color: var(--light-gray);
+      margin: 0;
+      padding: 20px;
+      color: var(--text-color);
+      line-height: 1.6;
+    }
 
-        h1 {
-            color: var(--primary-color);
-            font-size: 2.2em;
-            font-weight: 600;
-            border-bottom: 3px solid var(--secondary-color);
-            padding-bottom: 10px;
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+    .container {
+      background-color: var(--bg-color);
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 40px 50px;
+      border-radius: var(--border-radius);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      position: relative;
+      overflow: hidden;
+    }
 
-        h1 i {
-            color: var(--secondary-color);
-        }
+    h1 {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--primary-color);
+      font-size: 2.4em;
+      font-weight: 600;
+      border-bottom: 4px solid var(--secondary-color);
+      padding-bottom: 12px;
+      margin-bottom: 30px;
+      transform: translateY(-10px);
+      opacity: 0;
+      animation: fadeInDown 0.6s forwards;
+    }
 
-        h2 {
-            color: var(--primary-color);
-            font-size: 1.5em;
-            margin-top: 30px;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+    h1 i {
+      color: var(--secondary-color);
+      font-size: 1.2em;
+    }
 
-        h2 i {
-            color: var(--secondary-color);
-        }
+    h2 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--primary-color);
+      font-size: 1.6em;
+      margin-top: 40px;
+      font-weight: 500;
+      transition: color var(--transition-fast);
+    }
 
-        p {
-            margin-bottom: 15px;
-            font-size: 1em;
-            color: #555;
-        }
+    h2 i {
+      color: var(--secondary-color);
+      font-size: 1.2em;
+      transform: rotate(-5deg);
+      transition: transform var(--transition-fast);
+    }
 
-        strong {
-            color: var(--primary-color);
-            font-weight: 600;
-        }
+    h2:hover {
+      color: var(--accent-color);
+    }
 
-        a {
-            color: var(--secondary-color);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
+    h2:hover i {
+      transform: rotate(0deg) scale(1.2);
+    }
 
-        a:hover {
-            color: var(--primary-color);
-            text-decoration: underline;
-        }
+    p {
+      margin-bottom: 18px;
+      font-size: 1em;
+      color: #555555;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.6s forwards;
+      animation-delay: 0.4s;
+    }
 
-        .update-date {
-            display: block;
-            margin-top: 40px;
-            font-size: 0.9em;
-            color: #888;
-            text-align: right;
-            padding-top: 15px;
-            border-top: 1px solid #eee;
-        }
-    </style>
+    ul {
+      margin-bottom: 18px;
+      padding-left: 20px;
+      color: #555555;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.6s forwards;
+      animation-delay: 0.5s;
+    }
+
+    ul li {
+      margin-bottom: 10px;
+      transition: transform var(--transition-fast), color var(--transition-fast);
+    }
+
+    ul li:hover {
+      color: var(--accent-color);
+      transform: translateX(4px);
+    }
+
+    a {
+      color: var(--secondary-color);
+      text-decoration: none;
+      position: relative;
+      transition: color var(--transition-fast);
+    }
+
+    a::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 2px;
+      background: var(--secondary-color);
+      transition: width var(--transition-fast);
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+    }
+
+    a:hover {
+      color: var(--accent-color);
+    }
+
+    a:hover::after {
+      width: 100%;
+    }
+
+    .update-date {
+      display: block;
+      margin-top: 50px;
+      font-size: 0.9em;
+      color: #888888;
+      text-align: right;
+      border-top: 1px solid #eee;
+      padding-top: 18px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.6s forwards;
+      animation-delay: 0.6s;
+    }
+
+    /* Button style example */
+    .btn-primary {
+      display: inline-block;
+      padding: 12px 24px;
+      background: var(--secondary-color);
+      color: #fff;
+      font-weight: 500;
+      border: none;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-color);
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+    }
+
+    /* Animations */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Accessibility: reduce motion */
+    @media (prefers-reduced-motion) {
+      * {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1><i class="fas fa-user-shield"></i> Política de Privacidad</h1>
+  <div class="container">
+    <h1><i class="fas fa-user-shield"></i> Política de Privacidad</h1>
 
-        <p>Esta aplicación móvil, desarrollada por <strong>NEIRUZLAB</strong>, se compromete con la <strong>protección y privacidad</strong> de sus usuarios. Nuestra política es simple: <strong>No recopilamos datos personales</strong> para la venta o el uso fuera de la aplicación. </p>
+    <p>Esta aplicación móvil, desarrollada por <strong>NEIRUZLAB</strong>, se compromete con la <strong>protección y privacidad</strong> de sus usuarios. Nuestra política es simple: <strong>No recopilamos datos personales</strong> para la venta o el uso fuera de la aplicación.</p>
 
-        <h2><i class="fas fa-database"></i> Datos recopilados y Servicios de Terceros</h2>
-        <p>No se recopilan datos personales <strong>directamente</strong> por NEIRUZLAB a través de esta aplicación.</p>
-        <p>Sin embargo, utilizamos <strong>servicios de terceros</strong> integrados que podrían recopilar <strong>información no personal</strong> (como el tipo de dispositivo, identificadores anónimos de publicidad o datos de uso) con el fin de optimizar anuncios y mejorar el rendimiento de la aplicación:</p>
-        <ul>
-            <li><strong>Google AdMob:</strong> Utilizado para la entrega de anuncios. AdMob puede usar cookies e identificadores anónimos para mostrar anuncios relevantes según las preferencias del usuario.</li>
-        </ul>
-        <p>Recomendamos revisar las políticas de privacidad de estos terceros para obtener más detalles sobre su manejo de datos.</p>
+    <h2><i class="fas fa-database"></i> Datos recopilados y Servicios de Terceros</h2>
+    <p>No se recopilan datos personales <strong>directamente</strong> por NEIRUZLAB a través de esta aplicación.</p>
+    <p>Sin embargo, utilizamos <strong>servicios de terceros</strong> integrados que podrían recopilar <strong>información no personal</strong> (como el tipo de dispositivo, identificadores anónimos de publicidad o datos de uso) con el fin de optimizar anuncios y mejorar el rendimiento de la aplicación:</p>
+    <ul>
+      <li><strong>Google AdMob:</strong> Utilizado para la entrega de anuncios. AdMob puede usar cookies e identificadores anónimos para mostrar anuncios relevantes según las preferencias del usuario.</li>
+    </ul>
+    <p>Recomendamos revisar las políticas de privacidad de estos terceros para obtener más detalles sobre su manejo de datos.</p>
 
-        <h2><i class="fas fa-bullhorn"></i> Publicidad y Personalización</h2>
-        <p>Esta app puede mostrar anuncios. Las plataformas publicitarias, como Google AdMob, pueden acceder a la información no personal mencionada para <strong>personalizar los anuncios</strong> que usted ve. Usted tiene control sobre las preferencias de anuncios a través de la configuración de su dispositivo móvil.</p>
+    <h2><i class="fas fa-bullhorn"></i> Publicidad y Personalización</h2>
+    <p>Esta app puede mostrar anuncios. Las plataformas publicitarias, como Google AdMob, pueden acceder a la información no personal mencionada para <strong>personalizar los anuncios</strong> que usted ve. Usted tiene control sobre las preferencias de anuncios a través de la configuración de su dispositivo móvil.</p>
 
-        <h2><i class="fas fa-lock"></i> Uso de Permisos del Dispositivo</h2>
-        <p>La aplicación solicita permisos mínimos para garantizar una funcionalidad completa. Estos permisos (como el acceso al almacenamiento o la cámara) se utilizan <strong>únicamente para las funciones esenciales</strong> de la app, y nunca para la recopilación no autorizada de datos personales.</p>
+    <h2><i class="fas fa-lock"></i> Uso de Permisos del Dispositivo</h2>
+    <p>La aplicación solicita permisos mínimos para garantizar una funcionalidad completa. Estos permisos (como el acceso al almacenamiento o la cámara) se utilizan <strong>únicamente para las funciones esenciales</strong> de la app, y nunca para la recopilación no autorizada de datos personales.</p>
 
-        <h2><i class="fas fa-child"></i> Privacidad de Menores</h2>
-        <p>Esta aplicación <strong>no está dirigida</strong> a niños menores de 13 años (<strong>COPPA</strong>). No recopilamos intencionalmente información personal de menores de edad. Si descubrimos que hemos recibido información de un niño sin el consentimiento parental, la eliminaremos de inmediato.</p>
+    <h2><i class="fas fa-child"></i> Privacidad de Menores</h2>
+    <p>Esta aplicación <strong>no está dirigida</strong> a niños menores de 13 años (<strong>COPPA</strong>). No recopilamos intencionalmente información personal de menores de edad. Si descubrimos que hemos recibido información de un niño sin el consentimiento parental, la eliminaremos de inmediato.</p>
 
-        <h2><i class="fas fa-sync-alt"></i> Cambios a esta Política</h2>
-        <p>NEIRUZLAB se reserva el derecho de modificar esta política de privacidad en cualquier momento. Cualquier cambio será publicado en esta página con la fecha de la <strong>última actualización</strong>. El uso continuado de la aplicación implica la aceptación de dichos cambios.</p>
+    <h2><i class="fas fa-sync-alt"></i> Cambios a esta Política</h2>
+    <p>NEIRUZLAB se reserva el derecho de modificar esta política de privacidad en cualquier momento. Cualquier cambio será publicado en esta página con la fecha de la <strong>última actualización</strong>. El uso continuado de la aplicación implica la aceptación de dichos cambios.</p>
 
-        <h2><i class="fas fa-envelope"></i> Contacto</h2>
-        <p>Si tiene alguna pregunta, inquietud o sugerencia sobre nuestra política de privacidad, no dude en contactarnos:</p>
-        <p>Email: <a href="mailto:juliosarauz1i@gmail.com">Soporte NeiruzLab</a></p>
+    <h2><i class="fas fa-envelope"></i> Contacto</h2>
+    <p>Si tiene alguna pregunta, inquietud o sugerencia sobre nuestra política de privacidad, no dude en contactarnos:</p>
+    <p>Email: <a href="mailto:juliosarauz1i@gmail.com">Soporte NeiruzLab</a></p>
 
-        <span class="update-date">Última actualización: 8 de mayo de 2025</span>
-    </div>
+    <span class="update-date">Última actualización: 8 de mayo de 2025</span>
+
+  </div>
 </body>
 </html>
