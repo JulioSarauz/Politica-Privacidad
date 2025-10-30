@@ -1,8 +1,8 @@
 {
-    "rewrites": [
-      { "source": "/cv", "destination": "/cv/index.html" },
-      { "source": "/about", "destination": "/about.html" },
-      { "source": "/(.*)", "destination": "/index.html" }
-    ]
-  }
-  
+  "rewrites": [
+    { "source": "/cv", "destination": "/cv/index.html" },
+    { "source": "/app-ads.txt", "destination": "/app-ads.txt" },
+    { "source": "/about", "destination": "/about.html" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
