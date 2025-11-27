@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Política de Privacidad | NeiruzLab</title>
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Font Awesome --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
     :root {
@@ -23,13 +22,25 @@
 
     html {
       scroll-behavior: smooth;
+      /* Asegura que el fondo cubra todo el alto de la página */
+      height: 100%; 
     }
 
     body {
       font-family: 'Poppins', Arial, sans-serif;
-      background-color: var(--light-gray);
+      /* ELIMINAMOS el background-color y padding originales del body */
       margin: 0;
-      padding: 20px;
+      /* Añadimos la imagen de fondo aquí */
+      background-image: url('assets/img/fondo.png'); /* Ruta a tu imagen */
+      background-size: cover; /* Hace que la imagen cubra todo el área */
+      background-position: center; /* Centra la imagen */
+      background-repeat: no-repeat; /* Evita que la imagen se repita */
+      background-attachment: fixed; /* Mantiene la imagen fija al hacer scroll */
+      min-height: 100vh; /* Asegura que el body ocupe al menos el alto de la ventana */
+      display: flex; /* Para centrar el contenedor verticalmente si es necesario */
+      justify-content: center; /* Para centrar el contenedor horizontalmente */
+      align-items: flex-start; /* Alinea el contenedor al inicio del eje Y, puedes probar 'center' */
+      padding: 20px 0; /* Añade padding vertical para que el contenedor no pegue a los bordes */
       color: var(--text-color);
       line-height: 1.6;
     }
@@ -37,12 +48,15 @@
     .container {
       background-color: var(--bg-color);
       max-width: 800px;
-      margin: 40px auto;
+      /* Ajustamos el margin para que no interfiera con el centrado del body */
+      margin: 40px auto; /* Mantenemos auto para centrado horizontal, 40px top/bottom */
       padding: 40px 50px;
       border-radius: var(--border-radius);
       box-shadow: 0 8px 24px rgba(0,0,0,0.08);
       position: relative;
       overflow: hidden;
+      /* Asegúrate de que el contenedor tenga un z-index si es necesario, aunque no debería serlo aquí */
+      z-index: 1; 
     }
 
     h1 {
@@ -205,7 +219,7 @@
   <div class="container">
     <h1><i class="fas fa-user-shield"></i> Política de Privacidad</h1>
 
-     <p>Esta aplicación móvil, desarrollada por <span class="brand-link" onclick="window.location.href='/about'">NEIRUZLAB</span>, se compromete con la <strong>protección y privacidad</strong> de sus usuarios. Nuestra política es simple: <strong>No recopilamos datos personales</strong> para la venta o el uso fuera de la aplicación.</p>
+      <p>Esta aplicación móvil, desarrollada por <span class="brand-link" onclick="window.location.href='/about'">NEIRUZLAB</span>, se compromete con la <strong>protección y privacidad</strong> de sus usuarios. Nuestra política es simple: <strong>No recopilamos datos personales</strong> para la venta o el uso fuera de la aplicación.</p>
 
     <h2><i class="fas fa-database"></i> Datos recopilados y Servicios de Terceros</h2>
     <p>No se recopilan datos personales <strong>directamente</strong> por NEIRUZLAB a través de esta aplicación.</p>
