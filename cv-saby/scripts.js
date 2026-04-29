@@ -136,7 +136,7 @@ function toggleMenu() {
 
 function downloadCV() {
   var link = document.createElement('a');
-  link.href = 'saby_cv.pdf';
+  link.href = '/cv-saby/saby_cv.pdf';
   link.download = 'CV_Sabina_Zhiminaicela.pdf';
   document.body.appendChild(link);
   link.click();
