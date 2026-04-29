@@ -39,6 +39,9 @@
       <button class="btn-gallery" onclick="openModal()">
         <i class="fas fa-trophy"></i> Premios
       </button>
+      <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Cambiar tema">
+        <i class="fas fa-moon"></i>
+      </button>
     </div>
     <button class="hamburger" id="hamburger" onclick="toggleMenu()">
       <span></span><span></span><span></span>
@@ -57,6 +60,10 @@
     </button>
     <button class="btn-gallery" onclick="openModal(); toggleMenu();">
       <i class="fas fa-trophy"></i> Premios
+    </button>
+    <button class="mobile-theme-toggle" onclick="toggleTheme()">
+      <i class="fas fa-moon" id="mobileThemeIcon"></i>
+      <span id="mobileThemeText">Modo oscuro</span>
     </button>
   </div>
 

@@ -1,14 +1,50 @@
 document.addEventListener('DOMContentLoaded', function() {
+  loadTheme();
   setTimeout(function() {
     document.getElementById('loader').classList.add('hidden');
   }, 2000);
-
   createParticles();
   initScrollReveal();
   initNavbar();
   initCounters();
   initCompetenceBars();
 });
+
+function loadTheme() {
+  var saved = localStorage.getItem('sz-theme');
+  if (saved === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    updateThemeIcons(true);
+  }
+}
+
+function toggleTheme() {
+  var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  if (isDark) {
+    document.documentElement.removeAttribute('data-theme');
+    localStorage.setItem('sz-theme', 'light');
+    updateThemeIcons(false);
+  } else {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    localStorage.setItem('sz-theme', 'dark');
+    updateThemeIcons(true);
+  }
+}
+
+function updateThemeIcons(isDark) {
+  var desktopBtn = document.querySelector('#themeToggle i');
+  var mobileIcon = document.getElementById('mobileThemeIcon');
+  var mobileText = document.getElementById('mobileThemeText');
+  if (desktopBtn) {
+    desktopBtn.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+  }
+  if (mobileIcon) {
+    mobileIcon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+  }
+  if (mobileText) {
+    mobileText.textContent = isDark ? 'Modo claro' : 'Modo oscuro';
+  }
+}
 
 function createParticles() {
   var container = document.getElementById('particles');
@@ -34,7 +70,6 @@ function initScrollReveal() {
       }
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
   reveals.forEach(function(el) {
     observer.observe(el);
   });
@@ -44,14 +79,12 @@ function initNavbar() {
   var navbar = document.getElementById('navbar');
   var links = document.querySelectorAll('.nav-link');
   var sections = document.querySelectorAll('section');
-
   window.addEventListener('scroll', function() {
     if (window.scrollY > 50) {
       navbar.classList.add('scrolled');
     } else {
       navbar.classList.remove('scrolled');
     }
-
     var current = '';
     sections.forEach(function(section) {
       var sectionTop = section.offsetTop - 100;
@@ -59,7 +92,6 @@ function initNavbar() {
         current = section.getAttribute('id');
       }
     });
-
     links.forEach(function(link) {
       link.classList.remove('active');
       if (link.getAttribute('data-section') === current) {
@@ -72,38 +104,31 @@ function initNavbar() {
 function initCounters() {
   var counters = document.querySelectorAll('.stat-number');
   var observed = false;
-
   var observer = new IntersectionObserver(function(entries) {
     if (entries[0].isIntersecting && !observed) {
       observed = true;
       counters.forEach(function(counter) {
         var target = parseInt(counter.getAttribute('data-count'));
         var duration = 2000;
-        var start = 0;
         var startTime = null;
-
         function animate(currentTime) {
           if (!startTime) startTime = currentTime;
           var progress = Math.min((currentTime - startTime) / duration, 1);
           var eased = 1 - Math.pow(1 - progress, 3);
           var current = Math.floor(eased * target);
-
           if (target >= 1000) {
             counter.textContent = current.toLocaleString('es-EC') + '+';
           } else {
             counter.textContent = current + '+';
           }
-
           if (progress < 1) {
             requestAnimationFrame(animate);
           }
         }
-
         requestAnimationFrame(animate);
       });
     }
   }, { threshold: 0.5 });
-
   if (counters.length > 0) {
     observer.observe(counters[0].closest('.hero-stats'));
   }
@@ -111,7 +136,6 @@ function initCounters() {
 
 function initCompetenceBars() {
   var bars = document.querySelectorAll('.competence-bar');
-
   var observer = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
       if (entry.isIntersecting) {
@@ -121,7 +145,6 @@ function initCompetenceBars() {
       }
     });
   }, { threshold: 0.3 });
-
   bars.forEach(function(bar) {
     observer.observe(bar);
   });
