@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CV - Sabina Zhiminaicela</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="loader" id="loader">
+    <div class="loader-leaf">
+      <svg viewBox="0 0 60 60" width="60" height="60">
+        <path d="M30 5 C15 15, 5 30, 30 55 C55 30, 45 15, 30 5Z" fill="#2d8a6e" opacity="0.9"/>
+        <path d="M30 15 L30 45" stroke="#fff" stroke-width="1.5" fill="none"/>
+        <path d="M30 25 L22 20" stroke="#fff" stroke-width="1" fill="none"/>
+        <path d="M30 30 L38 25" stroke="#fff" stroke-width="1" fill="none"/>
+        <path d="M30 35 L22 31" stroke="#fff" stroke-width="1" fill="none"/>
+      </svg>
+    </div>
+    <p class="loader-text">Sabina Zhiminaicela</p>
+  </div>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-logo">SZ</div>
+    <div class="nav-links">
+      <a href="#inicio" class="nav-link active" data-section="inicio">Inicio</a>
+      <a href="#sobre-mi" class="nav-link" data-section="sobre-mi">Perfil</a>
+      <a href="#experiencia" class="nav-link" data-section="experiencia">Experiencia</a>
+      <a href="#formacion" class="nav-link" data-section="formacion">Formación</a>
+      <a href="#logros" class="nav-link" data-section="logros">Logros</a>
+      <a href="#contacto" class="nav-link" data-section="contacto">Contacto</a>
+    </div>
+    <div class="nav-actions">
+      <button class="btn-download" onclick="downloadCV()">
+        <i class="fas fa-file-pdf"></i> Descargar CV
+      </button>
+      <button class="btn-gallery" onclick="openModal()">
+        <i class="fas fa-trophy"></i> Premios
+      </button>
+    </div>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#inicio" onclick="toggleMenu()">Inicio</a>
+    <a href="#sobre-mi" onclick="toggleMenu()">Perfil</a>
+    <a href="#experiencia" onclick="toggleMenu()">Experiencia</a>
+    <a href="#formacion" onclick="toggleMenu()">Formación</a>
+    <a href="#logros" onclick="toggleMenu()">Logros</a>
+    <a href="#contacto" onclick="toggleMenu()">Contacto</a>
+    <button class="btn-download" onclick="downloadCV(); toggleMenu();">
+      <i class="fas fa-file-pdf"></i> Descargar CV
+    </button>
+    <button class="btn-gallery" onclick="openModal(); toggleMenu();">
+      <i class="fas fa-trophy"></i> Premios
+    </button>
+  </div>
+
+  <section class="hero" id="inicio">
+    <div class="hero-particles" id="particles"></div>
+    <div class="hero-content">
+      <div class="hero-photo-wrapper">
+        <div class="hero-photo-ring"></div>
+        <div class="hero-photo">
+          <img src="saby.png" alt="Sabina Zhiminaicela" />
+        </div>
+      </div>
+      <div class="hero-text">
+        <p class="hero-greeting anim-slide-up">Hola, soy</p>
+        <h1 class="hero-name anim-slide-up delay-1">Sabina <span>Zhiminaicela</span></h1>
+        <div class="hero-titles anim-slide-up delay-2">
+          <span class="title-tag">Ingeniera Ambiental</span>
+          <span class="title-tag accent">Máster en Innovación Social</span>
+          <span class="title-tag">Jefe de Responsabilidad Social</span>
+        </div>
+        <p class="hero-desc anim-slide-up delay-3">
+          Apasionada por potenciar el impacto social, ambiental y de gobernanza en el sector financiero cooperativo. 
+          Experiencia en sistemas de gestión ambiental y social, sostenibilidad, SSA, Responsabilidad Social e incorporación de SARAS.
+        </p>
+        <div class="hero-stats anim-slide-up delay-4">
+          <div class="stat-item">
+            <span class="stat-number" data-count="23000">0</span>
+            <span class="stat-label">Socios Capacitados</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" data-count="8">0</span>
+            <span class="stat-label">Premios Obtenidos</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" data-count="4">0</span>
+            <span class="stat-label">Años de Experiencia</span>
+          </div>
+        </div>
+        <div class="hero-cta anim-slide-up delay-5">
+          <a href="#experiencia" class="btn-primary">Ver Experiencia</a>
+          <a href="#contacto" class="btn-secondary">Contactarme</a>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <section class="section-about" id="sobre-mi">
+    <div class="section-container">
+      <h2 class="section-title reveal">
+        <span class="title-icon"><i class="fas fa-leaf"></i></span>
+        Perfil Profesional
+      </h2>
+      <div class="about-grid">
+        <div class="about-card reveal reveal-left">
+          <h3><i class="fas fa-bullseye"></i> Conocimientos</h3>
+          <div class="skill-tags">
+            <span>Criterios ASG</span>
+            <span>Estándares GRI</span>
+            <span>KPIs de Sostenibilidad</span>
+            <span>Balance Social</span>
+            <span>Memorias de Sostenibilidad</span>
+            <span>Sistemas de Gestión Ambiental</span>
+            <span>SARAS</span>
+            <span>Gobernanza</span>
+            <span>Carbono Neutralidad</span>
+            <span>Manejo de Residuos</span>
+            <span>Legislación Ambiental</span>
+            <span>Educación Financiera</span>
+            <span>Cooperativismo</span>
+            <span>ISO 9001 y 37001</span>
+            <span>Estrategias ODS e ISO 26000</span>
+            <span>Índice de Bienestar Financiero</span>
+          </div>
+        </div>
+        <div class="about-card reveal reveal-right">
+          <h3><i class="fas fa-users"></i> Competencias</h3>
+          <div class="competence-list">
+            <div class="competence-item">
+              <div class="competence-bar" data-width="95%">
+                <span>Comunicación</span>
+              </div>
+            </div>
+            <div class="competence-item">
+              <div class="competence-bar" data-width="95%">
+                <span>Trabajo en equipo</span>
+              </div>
+            </div>
+            <div class="competence-item">
+              <div class="competence-bar" data-width="90%">
+                <span>Orientación a resultados</span>
+              </div>
+            </div>
+            <div class="competence-item">
+              <div class="competence-bar" data-width="90%">
+                <span>Gestión del tiempo</span>
+              </div>
+            </div>
+            <div class="competence-item">
+              <div class="competence-bar" data-width="85%">
+                <span>Resolución de conflictos</span>
+              </div>
+            </div>
+            <div class="competence-item">
+              <div class="competence-bar" data-width="92%">
+                <span>Creación de contenido</span>
+              </div>
+            </div>
+            <div class="competence-item">
+              <div class="competence-bar" data-width="88%">
+                <span>Innovación</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="about-card full-width reveal">
+          <h3><i class="fas fa-laptop-code"></i> Herramientas & Idiomas</h3>
+          <div class="tools-grid">
+            <div class="tool-item">
+              <i class="fab fa-microsoft"></i>
+              <span>Microsoft Office Avanzado</span>
+            </div>
+            <div class="tool-item">
+              <i class="fas fa-project-diagram"></i>
+              <span>Microsoft Project</span>
+            </div>
+            <div class="tool-item">
+              <i class="fab fa-trello"></i>
+              <span>Trello / Planner / Jira</span>
+            </div>
+            <div class="tool-item">
+              <i class="fas fa-paint-brush"></i>
+              <span>Canva</span>
+            </div>
+            <div class="tool-item">
+              <i class="fas fa-presentation"></i>
+              <span>Prezi / Genially / Powtoon</span>
+            </div>
+            <div class="tool-item">
+              <i class="fas fa-robot"></i>
+              <span>Herramientas de IA</span>
+            </div>
+            <div class="tool-item">
+              <i class="fas fa-language"></i>
+              <span>Inglés Avanzado</span>
+            </div>
+            <div class="tool-item">
+              <i class="fas fa-car"></i>
+              <span>Licencia Tipo B</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-experience" id="experiencia">
+    <div class="section-container">
+      <h2 class="section-title reveal">
+        <span class="title-icon"><i class="fas fa-briefcase"></i></span>
+        Experiencia Profesional
+      </h2>
+      <div class="timeline">
+        <div class="timeline-item reveal reveal-left">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">Abril 2023 - Actualidad</div>
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <h3>Jefe de Responsabilidad Social</h3>
+              <span class="timeline-company">Cooperativa de Ahorro y Crédito "29 de Octubre"</span>
+            </div>
+            <p class="timeline-subtitle">Gestión estratégica de programas de impacto social, ambiental y de inclusión financiera</p>
+            <ul class="timeline-achievements">
+              <li>
+                <strong>Educación Financiera:</strong> Liderazgo integral del programa para socios y comunidad.
+                <span class="result">+23.000 socios capacitados desde 2023</span>
+              </li>
+              <li>
+                <strong>Índice de Bienestar Financiero:</strong> Diseño e implementación como herramienta de medición de impacto social.
+              </li>
+              <li>
+                <strong>Gestión Ambiental:</strong> Estrategia de ecoeficiencia con puntos limpios y Reciclatón 2025.
+                <span class="result">4 toneladas de residuos recuperados en una edición</span>
+              </li>
+              <li>
+                <strong>Voluntariado Corporativo:</strong> Primer programa de la Cooperativa.
+                <span class="result">40% de colaboradores participantes</span>
+              </li>
+              <li>
+                <strong>Balance Social y Sostenibilidad:</strong> Coordinación y elaboración (2022-2025) y Memoria de Sostenibilidad (2023-2024).
+              </li>
+              <li>
+                <strong>Inspira Mujer:</strong> Programa de inclusión financiera con enfoque de género.
+                <span class="result">+2.000 mujeres participantes desde 2025</span>
+              </li>
+              <li>
+                <strong>Intercolegial de Teatro:</strong> Primer certamen en Educación Financiera.
+                <span class="result">+1.200 inscritos y 180 niños participantes</span>
+              </li>
+              <li>
+                <strong>Alfabetización Digital:</strong> Primer programa para adultos mayores en una cooperativa del país.
+                <span class="result">+100 adultos mayores beneficiados</span>
+              </li>
+              <li>
+                <strong>Ecoruta 29:</strong> Coordinación del aplicativo de movilidad sostenible institucional.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal reveal-right">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">Sep 2022 - Abril 2023</div>
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <h3>Técnico de Sostenibilidad y Ambiente</h3>
+              <span class="timeline-company">Green Wise Consulting</span>
+            </div>
+            <ul class="timeline-achievements">
+              <li>Cuantificación de huella de carbono (2021-2022) según ISO 14064-1 para empresas como Novacero, General Motors, Aneta y Corporación Favorita.</li>
+              <li>Capacitación al personal en temas de Huella de Carbono y Cambio Climático.</li>
+              <li>Elaboración y seguimiento de plan de manejo de carbono y compensación de emisiones.</li>
+              <li>Generación de documentos conforme ISO 14064-1 y normativa legal vigente.</li>
+              <li>Acompañamiento en verificación externa y soporte en auditorías.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal reveal-left">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">Junio 2022 - Dic 2022</div>
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <h3>Consultor Independiente</h3>
+              <span class="timeline-company">Red de Instituciones Financieras de Desarrollo</span>
+            </div>
+            <ul class="timeline-achievements">
+              <li>Asesoría en implementación de Líneas Verdes y SARAS para 5 Cooperativas en la Amazonía dentro del proyecto ProAmazonía.</li>
+              <li>Levantamiento de línea base de riesgo y análisis de tendencias para Instructivos de SARAS.</li>
+              <li>Levantamiento de Manuales de SARAS para las cooperativas del estudio.</li>
+              <li>Soporte en parametrización del Core Financiero adaptado a cartera de crédito.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal reveal-right">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">Agosto 2021 - Agosto 2022</div>
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <h3>Asistente de Responsabilidad Social</h3>
+              <span class="timeline-company">Cooperativa de Ahorro y Crédito Cooprogreso</span>
+            </div>
+            <ul class="timeline-achievements">
+              <li>Diseño de campañas de Educación Financiera a través de plataformas digitales.</li>
+              <li>Soporte en Concursos de Oratoria a nivel nacional. <span class="result">Incremento del 50% en concursos semestrales</span></li>
+              <li>Diseño de programas de voluntariado y gestión de Brigadas Médicas.</li>
+              <li>Soporte en Memoria de Sostenibilidad con estándares GRI y Balance Social 2021.</li>
+              <li>Construcción de manuales e instructivos de gestión Ambiental.</li>
+              <li>Soporte en proyecto "Círculo de Progreso" (ODS 1) beneficiando a mujeres en vulnerabilidad.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-education" id="formacion">
+    <div class="section-container">
+      <h2 class="section-title reveal">
+        <span class="title-icon"><i class="fas fa-graduation-cap"></i></span>
+        Formación Académica
+      </h2>
+      <div class="education-grid">
+        <div class="edu-card reveal">
+          <div class="edu-icon"><i class="fas fa-university"></i></div>
+          <div class="edu-level">Cuarto Nivel</div>
+          <h3>Máster en Innovación Social y Economía Solidaria</h3>
+          <p class="edu-place">Universidad de Salamanca</p>
+        </div>
+        <div class="edu-card reveal">
+          <div class="edu-icon"><i class="fas fa-flask"></i></div>
+          <div class="edu-level">Educación Superior</div>
+          <h3>Ingeniera Ambiental</h3>
+          <p class="edu-place">Escuela Politécnica Nacional</p>
+          <p class="edu-merit"><i class="fas fa-award"></i> Beca de Excelencia Académica</p>
+        </div>
+        <div class="edu-card reveal">
+          <div class="edu-icon"><i class="fas fa-school"></i></div>
+          <div class="edu-level">Educación Secundaria</div>
+          <h3>Bachillerato</h3>
+          <p class="edu-place">Colegio Hipatia Cárdenas de Bustamante</p>
+          <p class="edu-period">2010 - 2016</p>
+        </div>
+      </div>
+
+      <h2 class="section-title reveal" style="margin-top: 60px;">
+        <span class="title-icon"><i class="fas fa-certificate"></i></span>
+        Formación Adicional
+      </h2>
+      <div class="cert-grid">
+        <div class="cert-card reveal">
+          <div class="cert-hours">120h</div>
+          <h4>Diplomado en Inclusión Financiera</h4>
+          <p>CAF - Banco de Desarrollo de América Latina y el Caribe</p>
+        </div>
+        <div class="cert-card reveal">
+          <div class="cert-hours">60h</div>
+          <h4>Inteligencia Artificial Generativa</h4>
+          <p>ESPE</p>
+        </div>
+        <div class="cert-card reveal">
+          <div class="cert-hours">56h</div>
+          <h4>Certificación en Liderazgo, Innovación y Emprendimiento</h4>
+          <p>Nestlé y la UEES</p>
+        </div>
+        <div class="cert-card reveal">
+          <div class="cert-hours">40h</div>
+          <h4>Reporting with the GRI Standards</h4>
+          <p>GRI - Certificate C477677</p>
+        </div>
+        <div class="cert-card reveal">
+          <div class="cert-hours">40h</div>
+          <h4>Líneas de Crédito Verdes y SARAS</h4>
+          <p>Conafips, PNUD, BIOFIN</p>
+        </div>
+        <div class="cert-card reveal">
+          <div class="cert-hours">32h</div>
+          <h4>Programa de Jóvenes sobre Finanzas Sostenibles</h4>
+          <p>Grupo de Financiamiento Climático de AL y el Caribe</p>
+        </div>
+        <div class="cert-card reveal">
+          <div class="cert-hours"><i class="fas fa-check-circle"></i></div>
+          <h4>Auditor Interno ISO 9001-37001</h4>
+          <p>AENOR</p>
+        </div>
+        <div class="cert-card reveal">
+          <div class="cert-hours"><i class="fas fa-check-circle"></i></div>
+          <h4>Multiplicador de Educación Financiera, Balance Social, Finanzas Verdes y Gobernanza</h4>
+          <p>Superintendencia de Economía Popular y Solidaria</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-awards" id="logros">
+    <div class="section-container">
+      <h2 class="section-title reveal">
+        <span class="title-icon"><i class="fas fa-trophy"></i></span>
+        Logros y Reconocimientos
+      </h2>
+      <div class="awards-showcase">
+        <div class="award-card reveal">
+          <div class="award-icon gold"><i class="fas fa-trophy"></i></div>
+          <h3>Premio EKOS Triple Impacto</h3>
+          <p>Reconocimiento por impacto social, ambiental y económico</p>
+        </div>
+        <div class="award-card reveal">
+          <div class="award-icon gold"><i class="fas fa-shield-alt"></i></div>
+          <h3>Certificación de Protección al Cliente</h3>
+          <p>Categoría Oro</p>
+        </div>
+        <div class="award-card reveal">
+          <div class="award-icon"><i class="fas fa-chart-line"></i></div>
+          <h3>Primera Calificación de Rating Social y Ambiental</h3>
+          <p>De la institución</p>
+        </div>
+        <div class="award-card reveal">
+          <div class="award-icon gold"><i class="fas fa-hands-helping"></i></div>
+          <h3>Premio "Inclusión en Acción"</h3>
+          <p>Categoría Oro - ATID & FIG</p>
+        </div>
+        <div class="award-card reveal">
+          <div class="award-icon"><i class="fas fa-building"></i></div>
+          <h3>Distintivo Empresa Socialmente Responsable</h3>
+          <p>Reconocimiento institucional</p>
+        </div>
+        <div class="award-card reveal">
+          <div class="award-icon"><i class="fas fa-bullhorn"></i></div>
+          <h3>Reconocimiento Primicias al ODS</h3>
+          <p>Objetivos de Desarrollo Sostenible</p>
+        </div>
+        <div class="award-card reveal">
+          <div class="award-icon"><i class="fas fa-certificate"></i></div>
+          <h3>Certificación ESGIF</h3>
+          <p>Social, Gobernanza y Ambiental</p>
+        </div>
+        <div class="award-card reveal">
+          <div class="award-icon"><i class="fas fa-eye"></i></div>
+          <h3>Visionario por la Sostenibilidad</h3>
+          <p>Ekos - Cumbre de Sostenibilidad 2025</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-contact" id="contacto">
+    <div class="section-container">
+      <h2 class="section-title reveal">
+        <span class="title-icon"><i class="fas fa-paper-plane"></i></span>
+        Contacto
+      </h2>
+      <div class="contact-grid">
+        <a href="tel:0987692511" class="contact-card reveal">
+          <i class="fas fa-phone"></i>
+          <span>0987692511</span>
+        </a>
+        <a href="mailto:sabina.gabrielazt@hotmail.com" class="contact-card reveal">
+          <i class="fas fa-envelope"></i>
+          <span>sabina.gabrielazt@hotmail.com</span>
+        </a>
+        <a href="https://www.linkedin.com/in/sabinazhiminaicela" target="_blank" class="contact-card reveal">
+          <i class="fab fa-linkedin"></i>
+          <span>linkedin.com/in/sabinazhiminaicela</span>
+        </a>
+        <div class="contact-card reveal">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Calderón, Quito, Ecuador</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>Sabina Zhiminaicela &copy; 2025</p>
+      <p class="footer-tagline">Ingeniera Ambiental &bull; Jefe de Responsabilidad Social</p>
+    </div>
+  </footer>
+
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+      <h2><i class="fas fa-trophy"></i> Premios y Publicaciones</h2>
+      <div class="modal-tabs">
+        <button class="tab-btn active" onclick="switchTab('premios', this)">Premios</button>
+        <button class="tab-btn" onclick="switchTab('programas', this)">Programas</button>
+        <button class="tab-btn" onclick="switchTab('impacto', this)">Impacto</button>
+      </div>
+      <div class="tab-content active" id="tab-premios">
+        <div class="modal-card">
+          <div class="modal-card-icon gold"><i class="fas fa-trophy"></i></div>
+          <div>
+            <h4>Premio EKOS Triple Impacto</h4>
+            <p>Reconocimiento otorgado por el impacto social, ambiental y económico de la gestión en la Cooperativa 29 de Octubre.</p>
+          </div>
+        </div>
+        <div class="modal-card">
+          <div class="modal-card-icon gold"><i class="fas fa-shield-alt"></i></div>
+          <div>
+            <h4>Certificación de Protección al Cliente - Categoría Oro</h4>
+            <p>Máxima categoría alcanzada en protección y defensa de los derechos de los socios y clientes.</p>
+          </div>
+        </div>
+        <div class="modal-card">
+          <div class="modal-card-icon"><i class="fas fa-chart-line"></i></div>
+          <div>
+            <h4>Primera Calificación de Rating Social y Ambiental</h4>
+            <p>Hito institucional como la primera calificación ASG de la cooperativa.</p>
+          </div>
+        </div>
+        <div class="modal-card">
+          <div class="modal-card-icon gold"><i class="fas fa-hands-helping"></i></div>
+          <div>
+            <h4>Premio Categoría Oro "Inclusión en Acción"</h4>
+            <p>Otorgado por ATID & FIG por programas de inclusión financiera destacados.</p>
+          </div>
+        </div>
+        <div class="modal-card">
+          <div class="modal-card-icon"><i class="fas fa-building"></i></div>
+          <div>
+            <h4>Distintivo Empresa Socialmente Responsable</h4>
+            <p>Reconocimiento por la implementación de prácticas de responsabilidad social corporativa.</p>
+          </div>
+        </div>
+        <div class="modal-card">
+          <div class="modal-card-icon"><i class="fas fa-bullhorn"></i></div>
+          <div>
+            <h4>Reconocimiento Primicias al ODS</h4>
+            <p>Por contribución destacada a los Objetivos de Desarrollo Sostenible.</p>
+          </div>
+        </div>
+        <div class="modal-card">
+          <div class="modal-card-icon"><i class="fas fa-certificate"></i></div>
+          <div>
+            <h4>Certificación ESGIF</h4>
+            <p>Certificación en criterios de Environmental, Social, Governance e Inclusión Financiera.</p>
+          </div>
+        </div>
+        <div class="modal-card">
+          <div class="modal-card-icon"><i class="fas fa-eye"></i></div>
+          <div>
+            <h4>Visionario por la Sostenibilidad</h4>
+            <p>Ekos - Cumbre de Sostenibilidad 2025. Reconocimiento por visión estratégica en sostenibilidad.</p>
+          </div>
+        </div>
+      </div>
+      <div class="tab-content" id="tab-programas">
+        <div class="modal-card">
+          <div class="modal-card-icon program"><i class="fas fa-graduation-cap"></i></div>
+          <div>
+            <h4>Programa de Educación Financiera</h4>
+            <p>Gestión integral para socios y comunidad en modalidad presencial y digital. Más de 23.000 socios capacitados desde 2023.</p>
+          </div>
+        </div>
+        <div class="modal-card">
+          <div class="modal-card-icon program"><i class="fas fa-female"></i></div>
+          <div>
+            <h4>Inspira Mujer</h4>
+            <p>Programa de inclusión financiera con enfoque de género y creación de producto de crédito específico. Más de 2.000 mujeres participantes.</p>
+          </div>
+        </div>
+        <div class="modal-card">
+          <div class="modal-card-icon program"><i class="fas fa-theater-masks"></i></div>
+          <div>
+            <h4>Intercolegial de Teatro en Educación Financiera</h4>
+            <p>Primer certamen a nivel nacional. Más de 1.200 inscritos y 180 niños participantes.</p>
+          </div>
+        </div>
+        <div class="modal-card">
+          <div class="modal-card-icon program"><i class="fas fa-tablet-alt"></i></div>
+          <div>
+            <h4>Alfabetización Digital para Adultos Mayores</h4>
+            <p>Primer programa en una cooperativa del país. Más de 100 adultos mayores beneficiados.</p>
+          </div>
+        </div>
+        <div class="modal-card">
+          <div class="modal-card-icon program"><i class="fas fa-heart"></i></div>
+          <div>
+            <h4>Voluntariado Corporativo</h4>
+            <p>Primer programa de la cooperativa con el 40% de colaboradores participantes.</p>
+          </div>
+        </div>
+        <div class="modal-card">
+          <div class="modal-card-icon program"><i class="fas fa-route"></i></div>
+          <div>
+            <h4>Ecoruta 29</h4>
+            <p>Aplicativo de movilidad sostenible institucional para reducción de huella de carbono.</p>
+          </div>
+        </div>
+      </div>
+      <div class="tab-content" id="tab-impacto">
+        <div class="impact-numbers">
+          <div class="impact-stat">
+            <div class="impact-value">23.000+</div>
+            <div class="impact-label">Socios capacitados en Educación Financiera</div>
+          </div>
+          <div class="impact-stat">
+            <div class="impact-value">2.000+</div>
+            <div class="impact-label">Mujeres en programa Inspira Mujer</div>
+          </div>
+          <div class="impact-stat">
+            <div class="impact-value">4 ton</div>
+            <div class="impact-label">Residuos recuperados en Reciclatón 2025</div>
+          </div>
+          <div class="impact-stat">
+            <div class="impact-value">1.200+</div>
+            <div class="impact-label">Inscritos en Intercolegial de Teatro</div>
+          </div>
+          <div class="impact-stat">
+            <div class="impact-value">100+</div>
+            <div class="impact-label">Adultos mayores alfabetizados digitalmente</div>
+          </div>
+          <div class="impact-stat">
+            <div class="impact-value">40%</div>
+            <div class="impact-label">Colaboradores en voluntariado corporativo</div>
+          </div>
+          <div class="impact-stat">
+            <div class="impact-value">50%</div>
+            <div class="impact-label">Incremento en concursos de oratoria</div>
+          </div>
+          <div class="impact-stat">
+            <div class="impact-value">8</div>
+            <div class="impact-label">Premios y certificaciones obtenidas</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
