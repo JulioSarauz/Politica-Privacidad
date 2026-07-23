@@ -4,6 +4,7 @@
     { "source": "/cv-saby", "destination": "/cv-saby/index.html" },
     { "source": "/app-ads.txt", "destination": "/app-ads.txt" },
     { "source": "/about", "destination": "/about.html" },
+    { "source": "/comida-solidaria", "destination": "/comida-solidaria/index.html" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
