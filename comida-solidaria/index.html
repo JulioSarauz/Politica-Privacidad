@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comida Solidaria</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://unpkg.com/html5-qrcode"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Sistema Solidario</h1>
+        
+        <div class="tabs">
+            <button id="btn-vender" class="active" onclick="showTab('vender', this)">Generar Boleto</button>
+            <button id="btn-validar" onclick="showTab('validar', this)">Validar QR</button>
+        </div>
+
+        <div id="vender" class="tab-content active">
+            <form id="form-venta">
+                <div class="input-group">
+                    <label for="nombre-vendedor">Vendedor</label>
+                    <select id="nombre-vendedor" required>
+                        <option value="" disabled selected>Selecciona un vendedor</option>
+                        <option value="V-AS">Andrea Saráuz</option>
+                        <option value="V-JS">Julio Saráuz</option>
+                        <option value="V-ES">Evelyn Saráuz</option>
+                        <option value="V-WS">Wlady Saráuz</option>
+                        <option value="V-SG">Sabina Gabriela Z</option>
+                        <option value="V-OT">Otro</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="cedula-comprador">Cédula del Comprador</label>
+                    <input type="text" id="cedula-comprador" placeholder="Ej: 1712345678" required>
+                </div>
+                <div class="input-group">
+                    <label for="nombre-comprador">Nombre del Comprador</label>
+                    <input type="text" id="nombre-comprador" placeholder="Nombre completo" required>
+                </div>
+                <div class="input-group">
+                    <label for="telefono-comprador">Teléfono</label>
+                    <input type="tel" id="telefono-comprador" placeholder="Ej: 0991234567" required>
+                </div>
+                <div class="input-group">
+                    <label for="direccion-comprador">Dirección / Referencia (Opcional)</label>
+                    <input type="text" id="direccion-comprador" placeholder="Para entregas a domicilio">
+                </div>
+                <div class="input-group">
+                    <label for="pedido">Detalle del Pedido</label>
+                    <input type="text" id="pedido" placeholder="Ej: 2 Tilapias" required>
+                </div>
+                
+                <button type="submit" class="btn-primary">Generar Código QR</button>
+            </form>
+            
+            <div id="qr-result" style="display: none; text-align: center; margin-top: 20px;">
+                <div id="qrcode" style="position: absolute; left: -9999px;"></div>
+                <img id="final-ticket-img" style="max-width: 100%; border-radius: 8px; margin-bottom: 15px; border: 1px solid #ced4da;">
+                <div class="action-buttons">
+                    <button type="button" id="btn-descargar" class="btn-action btn-blue">📥 Descargar</button>
+                    <button type="button" id="btn-whatsapp" class="btn-action btn-green">💬 WhatsApp</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="validar" class="tab-content">
+            <div class="alert alert-yellow">
+                <strong>Seguridad:</strong> Ingresa la clave de desencriptación para poder leer los boletos.
+            </div>
+            
+            <div class="input-group">
+                <label for="clave-acceso">Palabra Clave</label>
+                <input type="password" id="clave-acceso" placeholder="Ingrese la palabra clave">
+            </div>
+            
+            <div id="reader-container">
+                <div id="reader"></div>
+            </div>
+            
+            <div id="resultado-validacion" class="resultado"></div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
