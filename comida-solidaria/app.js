@@ -62,7 +62,7 @@ document.getElementById('form-venta').addEventListener('submit', function(e) {
         }
 
         const comidaImg = new Image();
-        comidaImg.src = 'public/comida.png';
+        comidaImg.src = '/comida-solidaria/public/comida.png';
         comidaImg.onload = () => {
             const canvas = document.createElement('canvas');
             const padding = 40;
